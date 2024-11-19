@@ -23,13 +23,6 @@ class HomeViewController: UIViewController {
         alert = Alert(controller: self)
     }
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        screen?.configButtonDisabled()
-    }
-    
     func configSetup(){
         configDelegates()
     }

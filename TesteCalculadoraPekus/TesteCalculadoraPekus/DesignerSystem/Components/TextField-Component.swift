@@ -24,6 +24,7 @@ class CustomTextField: UITextField {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.placeholder = placeholder
         self.backgroundColor = DesignerSystem.Colors.secondaryColor
+        self.textColor = .black
         self.clipsToBounds = true
         self.layer.cornerRadius = 12
         self.layer.borderWidth = 2
