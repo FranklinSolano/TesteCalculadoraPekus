@@ -15,6 +15,10 @@ protocol HomeScreenProtocol: AnyObject {
     func actionCalculateButton()
     func alertError()
     func alertSuccess()
+    func resultPlus()
+    func resultMinus()
+    func resultMultiply()
+    func resultDivide()
 }
 
 class HomeScreen: UIView {
@@ -25,7 +29,6 @@ class HomeScreen: UIView {
     }
     
     var selectionButton: Bool = false
-    
     //MARK: - Elements
     
     lazy var titleLabel: UILabel = {
@@ -195,49 +198,50 @@ class HomeScreen: UIView {
         ])
     }
     
-    func configSelectionButtonAddtion(){
-        additionButton.layer.borderColor = UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor
-        subtractionButton.layer.borderColor = UIColor.clear.cgColor
-        multiplicationButton.layer.borderColor = UIColor.clear.cgColor
-        divisionButton.layer.borderColor = UIColor.clear.cgColor
-        selectionButton = true
-    }
-    
-    func configSelectionButtonSubtraction(){
-        additionButton.layer.borderColor = UIColor.clear.cgColor
-        subtractionButton.layer.borderColor = UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor
-        multiplicationButton.layer.borderColor = UIColor.clear.cgColor
-        divisionButton.layer.borderColor = UIColor.clear.cgColor
-        selectionButton = true
-    }
-    
-    func configSelectionButtonMultiplication(){
-        additionButton.layer.borderColor = UIColor.clear.cgColor
-        subtractionButton.layer.borderColor = UIColor.clear.cgColor
-        multiplicationButton.layer.borderColor = UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor
-        divisionButton.layer.borderColor = UIColor.clear.cgColor
-        selectionButton = true
-    }
-    
-    func configSelectionButtonDivision(){
-        additionButton.layer.borderColor = UIColor.clear.cgColor
-        subtractionButton.layer.borderColor = UIColor.clear.cgColor
-        multiplicationButton.layer.borderColor = UIColor.clear.cgColor
-        divisionButton.layer.borderColor = UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor
-        selectionButton = true
-    }
-    
-    func configButtonDisabled(){
-        let valueOne = valueOneTextField.text ?? ""
-        let valueTwo = valueTwoTextField.text ?? ""
-        
-        if !valueOne.isEmpty && !valueTwo.isEmpty {
-            calculeteButton.setTitleColor(.white, for: .normal)
-            calculeteButton.isEnabled = true
-        } else {
-            calculeteButton.setTitleColor(.lightGray, for: .normal)
-            calculeteButton.isEnabled = false
+    func configSelectionButton() -> String{
+        if additionButton.layer.borderColor ==  UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor {
+            subtractionButton.layer.borderColor = UIColor.clear.cgColor
+            multiplicationButton.layer.borderColor = UIColor.clear.cgColor
+            divisionButton.layer.borderColor = UIColor.clear.cgColor
+            selectionButton = true
+            delegate?.resultPlus()
+            return "+"
+        } else if subtractionButton.layer.borderColor == UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor {
+            additionButton.layer.borderColor = UIColor.clear.cgColor
+            multiplicationButton.layer.borderColor = UIColor.clear.cgColor
+            divisionButton.layer.borderColor = UIColor.clear.cgColor
+            selectionButton = true
+            delegate?.resultMinus()
+            return "-"
+        } else if multiplicationButton.layer.borderColor == UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor {
+            additionButton.layer.borderColor = UIColor.clear.cgColor
+            subtractionButton.layer.borderColor = UIColor.clear.cgColor
+            divisionButton.layer.borderColor = UIColor.clear.cgColor
+            selectionButton = true
+            delegate?.resultMultiply()
+            return "*"
+        } else if divisionButton.layer.borderColor == UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor {
+            additionButton.layer.borderColor = UIColor.clear.cgColor
+            subtractionButton.layer.borderColor = UIColor.clear.cgColor
+            multiplicationButton.layer.borderColor = UIColor.clear.cgColor
+            selectionButton = true
+            delegate?.resultDivide()
+            return "/"
         }
+        return ""
+    }
+    
+    func configSelectionButton(button: UIButton) {
+        let buttuns = [additionButton, subtractionButton, multiplicationButton, divisionButton]
+            buttuns.forEach { $0.layer.borderColor = UIColor.clear.cgColor}
+            button.layer.borderColor = DesignerSystem.Colors.primaryColor.cgColor
+            selectionButton = true
+    }
+    
+    func configButtonDisabled() {
+        let isEnabled = !(valueOneTextField.text?.isEmpty ?? true) && !(valueTwoTextField.text?.isEmpty ?? true)
+        calculeteButton.isEnabled = isEnabled
+        calculeteButton.setTitleColor(isEnabled ? .white : .lightGray, for: .normal)
     }
     
     func configButtonOperationSelection(){

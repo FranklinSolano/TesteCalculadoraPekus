@@ -47,7 +47,6 @@ class LoginViewController: UIViewController {
 extension LoginViewController: LoginScreenProtocol {
     func tappedLoginButton() {
         viewModel.loginFirebase(email: "franklin@gmail.com", password: "12345678")
-        
     }
 }
 
