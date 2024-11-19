@@ -87,7 +87,7 @@ class HomeScreen: UIView {
     }()
     
     lazy var calculeteButton: UIButton = {
-        let button = ButtonCustomCalculate(title: "Calcular")
+        let button = ButtonCustomCalculate(title: "Calcular", isEnabled: false, titleColor: .lightGray)
         button.addTarget(self, action: #selector(tappedCalculateutton), for: .touchUpInside)
         return button
     }()

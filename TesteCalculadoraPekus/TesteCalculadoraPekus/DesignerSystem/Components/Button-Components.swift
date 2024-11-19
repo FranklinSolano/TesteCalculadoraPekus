@@ -33,9 +33,9 @@ class ButtonCustomOperators: UIButton {
 
 class ButtonCustomCalculate: UIButton{
     
-    init(title: String) {
+    init(title: String, isEnabled: Bool, titleColor: UIColor) {
         super.init(frame: .zero)
-        setupButton(title: title)
+        setupButton(title: title, isEnabled: isEnabled, titleColor: titleColor)
         
     }
     
@@ -43,14 +43,14 @@ class ButtonCustomCalculate: UIButton{
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupButton(title: String){
+    func setupButton(title: String, isEnabled: Bool, titleColor: UIColor){
         self.translatesAutoresizingMaskIntoConstraints = false
         self.setTitle(title, for: .normal)
         self.backgroundColor = DesignerSystem.Colors.primaryColor
-        self.setTitleColor(.lightGray, for: .normal)
         self.clipsToBounds = true
         self.layer.cornerRadius = 12
-        self.isEnabled = false
+        self.isEnabled = isEnabled
+        self.setTitleColor(titleColor, for: .normal)
     }
     
     
