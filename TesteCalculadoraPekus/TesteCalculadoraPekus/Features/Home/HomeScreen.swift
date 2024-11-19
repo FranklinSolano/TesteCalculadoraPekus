@@ -22,142 +22,73 @@ class HomeScreen: UIView {
         self.delegate = delegate
     }
     
+    //MARK: - Elements
+    
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Bem-vindo a Calculadora Pekus"
-        label.textColor = .white
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 25, weight: .bold)
-        label.numberOfLines = 0
+        label.configLabel(text: "Bem-vindo a Calculadora PEKUS", font: DesignerSystem.Fonts.fontBold, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var subtileLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Informe os valores e sua operação abaixo"
-        label.textColor = .white
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
-        label.numberOfLines = 0
+        label.configLabel(text: "Informe os valores e a operação desejada abaixo", font: DesignerSystem.Fonts.fontSemiBold, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var valueOneLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Primerio valor"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.configLabel(text: "Primeiro valor", font: DesignerSystem.Fonts.fontDefault, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var valueOneTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Digite aqui o primeiro valor"
-        textField.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
-        textField.clipsToBounds = true
-        textField.layer.cornerRadius = 12
-        textField.layer.borderWidth = 1.5
-        textField.keyboardType = .numberPad
-        textField.layer.borderColor = UIColor.red.cgColor
-        textField.textAlignment = .center
+        let textField = CustomTextField(placeholder: "Digite aqui o primeiro valor")
         return textField
     }()
     
     lazy var additionButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "plus"), for: .normal)
-        button.backgroundColor = .lightGray
-        button.tintColor = .darkGray
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 12
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.clear.cgColor
+        let button = ButtonCustomOperators(image: "plus")
         button.addTarget(self, action: #selector(tappedAdditionButton), for: .touchUpInside)
         return button
     }()
     
     lazy var subtractionButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "minus"), for: .normal)
-        button.backgroundColor = .lightGray
-        button.tintColor = .darkGray
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 12
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.clear.cgColor
+        let button = ButtonCustomOperators(image: "minus")
         button.addTarget(self, action: #selector(tappedSubtractionButton), for: .touchUpInside)
         return button
     }()
     
     lazy var multiplicationButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "multiply"), for: .normal)
-        button.backgroundColor = .lightGray
-        button.tintColor = .darkGray
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 12
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.clear.cgColor
+        let button = ButtonCustomOperators(image: "multiply")
         button.addTarget(self, action: #selector(tappedMultiplicationButton), for: .touchUpInside)
         return button
     }()
     
     lazy var divisionButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "divide"), for: .normal)
-        button.backgroundColor = .lightGray
-        button.tintColor = .darkGray
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 12
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.clear.cgColor
+        let button = ButtonCustomOperators(image: "divide")
         button.addTarget(self, action: #selector(tappedDivisionButton), for: .touchUpInside)
         return button
     }()
     
     lazy var valueTwoLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Segundo valor"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.configLabel(text: "Segundo valor", font: DesignerSystem.Fonts.fontDefault, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var valueTwoTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Digite aqui o segundo valor"
-        textField.backgroundColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
-        textField.clipsToBounds = true
-        textField.layer.cornerRadius = 12
-        textField.layer.borderWidth = 1.5
-        textField.layer.borderColor = UIColor.red.cgColor
-        textField.keyboardType = .numberPad
-        textField.textAlignment = .center
+        let textField = CustomTextField(placeholder: "Digite aqui o segundo valor")
         return textField
     }()
     
     lazy var calculeteButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Calcular", for: .normal)
-        button.backgroundColor = .red
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 12
-        button.layer.borderWidth = 1.5
-        button.layer.borderColor = UIColor.red.cgColor
+        let button = ButtonCustomCalculate(title: "Calcular")
         button.addTarget(self, action: #selector(tappedCalculateutton), for: .touchUpInside)
         return button
     }()
+    
+    //MARK: - Inicializador
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -168,20 +99,28 @@ class HomeScreen: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func configSetup() {
-        configColor()
-        configLayout()
-        configConstraints()
-    }
+    //MARK: - Other Methods
     
-    public func configDelegate(delegate: UITextFieldDelegate){
+     func configDelegate(delegate: UITextFieldDelegate){
         valueOneTextField.delegate = delegate
         valueTwoTextField.delegate = delegate
     }
     
-    private func configColor() {
-        backgroundColor = .darkGray
+    private func configSetup() {
+        configColor()
+        configLayout()
+        configConstraints()
+        setupTapGesture()
     }
+    
+    private func configColor() {
+        backgroundColor = DesignerSystem.Colors.secondaryColor
+    }
+    
+    private func setupTapGesture() {
+          let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+          self.addGestureRecognizer(tapGesture)
+      }
     
     private func configLayout() {
         addSubview(titleLabel)
@@ -205,7 +144,8 @@ class HomeScreen: UIView {
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -25),
             
             subtileLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            subtileLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
+            subtileLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
+            subtileLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
             
             valueOneLabel.topAnchor.constraint(equalTo: subtileLabel.bottomAnchor, constant: 50),
             valueOneLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -244,18 +184,15 @@ class HomeScreen: UIView {
             valueTwoTextField.trailingAnchor.constraint(equalTo: valueOneTextField.trailingAnchor),
             valueTwoTextField.heightAnchor.constraint(equalToConstant: 50),
             
-            calculeteButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            calculeteButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -40),
             calculeteButton.leadingAnchor.constraint(equalTo: valueOneTextField.leadingAnchor),
             calculeteButton.trailingAnchor.constraint(equalTo: valueOneTextField.trailingAnchor),
-            calculeteButton.heightAnchor.constraint(equalToConstant: 50),
-            
-            
-            
+            calculeteButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
     func configSelectionButtonAddtion(){
-        additionButton.layer.borderColor = UIColor.red.cgColor
+        additionButton.layer.borderColor = UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor
         subtractionButton.layer.borderColor = UIColor.clear.cgColor
         multiplicationButton.layer.borderColor = UIColor.clear.cgColor
         divisionButton.layer.borderColor = UIColor.clear.cgColor
@@ -263,7 +200,7 @@ class HomeScreen: UIView {
     
     func configSelectionButtonSubtraction(){
         additionButton.layer.borderColor = UIColor.clear.cgColor
-        subtractionButton.layer.borderColor = UIColor.red.cgColor
+        subtractionButton.layer.borderColor = UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor
         multiplicationButton.layer.borderColor = UIColor.clear.cgColor
         divisionButton.layer.borderColor = UIColor.clear.cgColor
     }
@@ -271,7 +208,7 @@ class HomeScreen: UIView {
     func configSelectionButtonMultiplication(){
         additionButton.layer.borderColor = UIColor.clear.cgColor
         subtractionButton.layer.borderColor = UIColor.clear.cgColor
-        multiplicationButton.layer.borderColor = UIColor.red.cgColor
+        multiplicationButton.layer.borderColor = UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor
         divisionButton.layer.borderColor = UIColor.clear.cgColor
     }
     
@@ -279,9 +216,10 @@ class HomeScreen: UIView {
         additionButton.layer.borderColor = UIColor.clear.cgColor
         subtractionButton.layer.borderColor = UIColor.clear.cgColor
         multiplicationButton.layer.borderColor = UIColor.clear.cgColor
-        divisionButton.layer.borderColor = UIColor.red.cgColor
+        divisionButton.layer.borderColor = UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor
     }
     
+    //MARK: - Actions-Buttons
     
     @objc func tappedAdditionButton() {
         delegate?.actionAdditionButton()
@@ -302,30 +240,9 @@ class HomeScreen: UIView {
     @objc func tappedCalculateutton() {
         delegate?.actionCalculateButton()
     }
+    
+    @objc func dismissKeyboard() {
+        self.endEditing(true)
+    }
 }
 
-
-//import SwiftUI
-//
-//// Preview para visualizar o LoginViewController
-//struct PreviewController_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PreviewViewControllerRepresentable()
-//            .edgesIgnoringSafeArea(.all)
-//    }
-//}
-//
-//// UIViewControllerRepresentable para integrar UIKit ao SwiftUI
-//struct PreviewViewControllerRepresentable: UIViewControllerRepresentable {
-//    
-//    func makeUIViewController(context: Context) -> UINavigationController {
-//        // Cria o LoginViewController e o coloca dentro de um UINavigationController
-//        let previewVC = HomeViewController()
-//        let navigationController = UINavigationController(rootViewController: previewVC)
-//        return navigationController
-//    }
-//    
-//    func updateUIViewController(_ uiViewController: UINavigationController, context: Context) {
-//        // Atualizações podem ser feitas aqui, mas pode ser deixado vazio
-//    }
-//}

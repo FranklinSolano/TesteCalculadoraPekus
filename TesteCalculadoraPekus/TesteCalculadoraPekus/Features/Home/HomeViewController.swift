@@ -55,7 +55,6 @@ extension HomeViewController: HomeScreenProtocol {
     }
     
     func actionCalculateButton() {
-        print(#function)
     }
     
     

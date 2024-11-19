@@ -11,7 +11,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		7DBA5BD42CEC259100FD4F90 /* Exceptions for "TesteCalculadoraPekus" folder in "TesteCalculadoraPekus" target */ = {
+		7D8D6B962CEC440E00D8BCCB /* Exceptions for "TesteCalculadoraPekus" folder in "TesteCalculadoraPekus" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -21,10 +21,10 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		7DBA5BC42CEC258F00FD4F90 /* TesteCalculadoraPekus */ = {
+		7D8D6B8F2CEC440E00D8BCCB /* TesteCalculadoraPekus */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				7DBA5BD42CEC259100FD4F90 /* Exceptions for "TesteCalculadoraPekus" folder in "TesteCalculadoraPekus" target */,
+				7D8D6B962CEC440E00D8BCCB /* Exceptions for "TesteCalculadoraPekus" folder in "TesteCalculadoraPekus" target */,
 			);
 			path = TesteCalculadoraPekus;
 			sourceTree = "<group>";
@@ -45,7 +45,7 @@
 		7DBA5BB92CEC258F00FD4F90 = {
 			isa = PBXGroup;
 			children = (
-				7DBA5BC42CEC258F00FD4F90 /* TesteCalculadoraPekus */,
+				7D8D6B8F2CEC440E00D8BCCB /* TesteCalculadoraPekus */,
 				7DBA5BC32CEC258F00FD4F90 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -74,7 +74,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				7DBA5BC42CEC258F00FD4F90 /* TesteCalculadoraPekus */,
+				7D8D6B8F2CEC440E00D8BCCB /* TesteCalculadoraPekus */,
 			);
 			name = TesteCalculadoraPekus;
 			packageProductDependencies = (
