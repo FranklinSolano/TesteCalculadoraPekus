@@ -79,7 +79,7 @@ extension HomeViewController: HomeScreenProtocol {
     func alertSuccess() {
         alert?.getAlert(titulo: "Sucesso", mensagem: "Dados Armezenados com sucesso")
        
-        viewModel.saveData(value1: screen?.valueOneTextField.text ?? "", value2: screen?.valueTwoTextField.text ?? "",operador: screen?.configSelectionButton() ?? "" , result: resultOperation)
+        viewModel.saveDataWithIncrement(value1: screen?.valueOneTextField.text ?? "", value2: screen?.valueTwoTextField.text ?? "",operador: screen?.configSelectionButton() ?? "" , result: resultOperation)
         screen?.sucessData()
                 
     }
