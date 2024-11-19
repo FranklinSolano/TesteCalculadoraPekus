@@ -10,6 +10,7 @@ import UIKit
 class LoginViewController: UIViewController {
     
     var screen: LoginScreen?
+    var viewModel: LoginViewModel = LoginViewModel()
     
     override func loadView() {
         screen = LoginScreen()
@@ -37,6 +38,7 @@ class LoginViewController: UIViewController {
     
     private func configDelegates(){
         screen?.delegate(delegate: self)
+        viewModel.setupDelegate(delegate: self)
     }
 
 }
@@ -44,6 +46,13 @@ class LoginViewController: UIViewController {
 
 extension LoginViewController: LoginScreenProtocol {
     func tappedLoginButton() {
+        viewModel.loginFirebase(email: "franklin@gmail.com", password: "12345678")
+        
+    }
+}
+
+extension LoginViewController: LoginViewModelProtocol{
+    func sucess() {
         let vc = TabbarViewController()
         navigationController?.pushViewController(vc, animated: true)
     }
