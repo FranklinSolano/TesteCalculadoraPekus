@@ -10,6 +10,7 @@ import UIKit
 class HomeViewController: UIViewController {
     
     var screen: HomeScreen?
+    var alert: Alert?
     
     override func loadView() {
         screen = HomeScreen()
@@ -19,6 +20,14 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configSetup()
+        alert = Alert(controller: self)
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        screen?.configButtonDisabled()
     }
     
     func configSetup(){
@@ -35,9 +44,22 @@ extension HomeViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
     }
+    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        screen?.configButtonDisabled()
+    }
 }
 
 extension HomeViewController: HomeScreenProtocol {
+    func alertError() {
+        alert?.getAlert(titulo: "Atenção", mensagem: "Selecione um operador para continuar")
+    }
+    
+    func alertSuccess() {
+        alert?.getAlert(titulo: "Sucesso", mensagem: "Dados Armezenados com sucesso")
+        screen?.sucessData()
+    }
+    
     func actionAdditionButton() {
         screen?.configSelectionButtonAddtion()
     }
@@ -55,6 +77,7 @@ extension HomeViewController: HomeScreenProtocol {
     }
     
     func actionCalculateButton() {
+        screen?.configButtonOperationSelection()
     }
     
     

@@ -13,6 +13,8 @@ protocol HomeScreenProtocol: AnyObject {
     func actionMultiplicationButton()
     func actionDivisionButton()
     func actionCalculateButton()
+    func alertError()
+    func alertSuccess()
 }
 
 class HomeScreen: UIView {
@@ -21,6 +23,8 @@ class HomeScreen: UIView {
     func delegate(delegate: HomeScreenProtocol){
         self.delegate = delegate
     }
+    
+    var selectionButton: Bool = false
     
     //MARK: - Elements
     
@@ -196,6 +200,7 @@ class HomeScreen: UIView {
         subtractionButton.layer.borderColor = UIColor.clear.cgColor
         multiplicationButton.layer.borderColor = UIColor.clear.cgColor
         divisionButton.layer.borderColor = UIColor.clear.cgColor
+        selectionButton = true
     }
     
     func configSelectionButtonSubtraction(){
@@ -203,6 +208,7 @@ class HomeScreen: UIView {
         subtractionButton.layer.borderColor = UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor
         multiplicationButton.layer.borderColor = UIColor.clear.cgColor
         divisionButton.layer.borderColor = UIColor.clear.cgColor
+        selectionButton = true
     }
     
     func configSelectionButtonMultiplication(){
@@ -210,6 +216,7 @@ class HomeScreen: UIView {
         subtractionButton.layer.borderColor = UIColor.clear.cgColor
         multiplicationButton.layer.borderColor = UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor
         divisionButton.layer.borderColor = UIColor.clear.cgColor
+        selectionButton = true
     }
     
     func configSelectionButtonDivision(){
@@ -217,6 +224,39 @@ class HomeScreen: UIView {
         subtractionButton.layer.borderColor = UIColor.clear.cgColor
         multiplicationButton.layer.borderColor = UIColor.clear.cgColor
         divisionButton.layer.borderColor = UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor
+        selectionButton = true
+    }
+    
+    func configButtonDisabled(){
+        let valueOne = valueOneTextField.text ?? ""
+        let valueTwo = valueTwoTextField.text ?? ""
+        
+        if !valueOne.isEmpty && !valueTwo.isEmpty {
+            calculeteButton.setTitleColor(.white, for: .normal)
+            calculeteButton.isEnabled = true
+        } else {
+            calculeteButton.setTitleColor(.lightGray, for: .normal)
+            calculeteButton.isEnabled = false
+        }
+    }
+    
+    func configButtonOperationSelection(){
+        if selectionButton == false {
+            delegate?.alertError()
+        } else {
+            delegate?.alertSuccess()
+        }
+    }
+    
+    func sucessData(){
+        valueOneTextField.text = ""
+        valueTwoTextField.text = ""
+        additionButton.layer.borderColor = UIColor.clear.cgColor
+        subtractionButton.layer.borderColor = UIColor.clear.cgColor
+        multiplicationButton.layer.borderColor = UIColor.clear.cgColor
+        divisionButton.layer.borderColor = UIColor.clear.cgColor
+        selectionButton = false
+        configButtonDisabled()
     }
     
     //MARK: - Actions-Buttons

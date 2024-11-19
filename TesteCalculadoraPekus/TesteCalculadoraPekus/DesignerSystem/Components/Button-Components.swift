@@ -47,8 +47,10 @@ class ButtonCustomCalculate: UIButton{
         self.translatesAutoresizingMaskIntoConstraints = false
         self.setTitle(title, for: .normal)
         self.backgroundColor = DesignerSystem.Colors.primaryColor
+        self.setTitleColor(.lightGray, for: .normal)
         self.clipsToBounds = true
         self.layer.cornerRadius = 12
+        self.isEnabled = false
     }
     
     
