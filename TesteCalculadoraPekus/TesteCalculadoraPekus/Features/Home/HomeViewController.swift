@@ -39,19 +39,19 @@ extension HomeViewController: UITextFieldDelegate {
 
 extension HomeViewController: HomeScreenProtocol {
     func actionAdditionButton() {
-        print(#function)
+        screen?.configSelectionButtonAddtion()
     }
     
     func actionSubtractionButton() {
-        print(#function)
+        screen?.configSelectionButtonSubtraction()
     }
     
     func actionMultiplicationButton() {
-        print(#function)
+        screen?.configSelectionButtonMultiplication()
     }
     
     func actionDivisionButton() {
-        print(#function)
+        screen?.configSelectionButtonDivision()
     }
     
     func actionCalculateButton() {

@@ -75,6 +75,8 @@ class HomeScreen: UIView {
         button.tintColor = .darkGray
         button.clipsToBounds = true
         button.layer.cornerRadius = 12
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.clear.cgColor
         button.addTarget(self, action: #selector(tappedAdditionButton), for: .touchUpInside)
         return button
     }()
@@ -87,6 +89,8 @@ class HomeScreen: UIView {
         button.tintColor = .darkGray
         button.clipsToBounds = true
         button.layer.cornerRadius = 12
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.clear.cgColor
         button.addTarget(self, action: #selector(tappedSubtractionButton), for: .touchUpInside)
         return button
     }()
@@ -99,6 +103,8 @@ class HomeScreen: UIView {
         button.tintColor = .darkGray
         button.clipsToBounds = true
         button.layer.cornerRadius = 12
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.clear.cgColor
         button.addTarget(self, action: #selector(tappedMultiplicationButton), for: .touchUpInside)
         return button
     }()
@@ -111,6 +117,8 @@ class HomeScreen: UIView {
         button.tintColor = .darkGray
         button.clipsToBounds = true
         button.layer.cornerRadius = 12
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.clear.cgColor
         button.addTarget(self, action: #selector(tappedDivisionButton), for: .touchUpInside)
         return button
     }()
@@ -142,7 +150,7 @@ class HomeScreen: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Calcular", for: .normal)
-        button.backgroundColor = .darkGray
+        button.backgroundColor = .red
         button.clipsToBounds = true
         button.layer.cornerRadius = 12
         button.layer.borderWidth = 1.5
@@ -244,6 +252,34 @@ class HomeScreen: UIView {
             
             
         ])
+    }
+    
+    func configSelectionButtonAddtion(){
+        additionButton.layer.borderColor = UIColor.red.cgColor
+        subtractionButton.layer.borderColor = UIColor.clear.cgColor
+        multiplicationButton.layer.borderColor = UIColor.clear.cgColor
+        divisionButton.layer.borderColor = UIColor.clear.cgColor
+    }
+    
+    func configSelectionButtonSubtraction(){
+        additionButton.layer.borderColor = UIColor.clear.cgColor
+        subtractionButton.layer.borderColor = UIColor.red.cgColor
+        multiplicationButton.layer.borderColor = UIColor.clear.cgColor
+        divisionButton.layer.borderColor = UIColor.clear.cgColor
+    }
+    
+    func configSelectionButtonMultiplication(){
+        additionButton.layer.borderColor = UIColor.clear.cgColor
+        subtractionButton.layer.borderColor = UIColor.clear.cgColor
+        multiplicationButton.layer.borderColor = UIColor.red.cgColor
+        divisionButton.layer.borderColor = UIColor.clear.cgColor
+    }
+    
+    func configSelectionButtonDivision(){
+        additionButton.layer.borderColor = UIColor.clear.cgColor
+        subtractionButton.layer.borderColor = UIColor.clear.cgColor
+        multiplicationButton.layer.borderColor = UIColor.clear.cgColor
+        divisionButton.layer.borderColor = UIColor.red.cgColor
     }
     
     
