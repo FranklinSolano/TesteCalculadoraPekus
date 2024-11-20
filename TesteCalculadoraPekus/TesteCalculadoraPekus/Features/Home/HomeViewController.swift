@@ -81,7 +81,7 @@ extension HomeViewController: HomeScreenProtocol {
     }
     
     func alertSuccess() {
-        alert?.getAlert(titulo: HomeViewControllerEnum.titleAlertSuccess.rawValue, mensagem: HomeViewControllerEnum.titleAlertSuccess.rawValue)
+        alert?.getAlert(titulo: HomeViewControllerEnum.titleAlertSuccess.rawValue, mensagem: HomeViewControllerEnum.messageAlertSuccess.rawValue)
         viewModel.saveDataWithIncrement(value1: screen?.valueOneTextField.text ?? "", value2: screen?.valueTwoTextField.text ?? "",operation: screen?.configSelectionButton() ?? "" , result: resultOperation)
         screen?.sucessData()
     }
