@@ -13,20 +13,17 @@ class DetailsViewModel {
     var dataPopular: [DetailsModel] = []
     
     func fetchUserData(completion: @escaping ([DetailsModel]?, Error?) -> Void) {
-        // Verifica se o usuário está logado
         guard let user = Auth.auth().currentUser else {
             print("Usuário não está logado")
             completion(nil, NSError(domain: "", code: -1, userInfo: [NSLocalizedDescriptionKey: "Usuário não está logado"]))
             return
         }
 
-        let uid = user.uid // Obtém o ID do usuário logado
+        let uid = user.uid
         let db = Firestore.firestore()
-
-        // Faz a consulta na coleção userData dentro de result/{uid}
-        // Ordenando os dados pelo campo "id" de forma crescente
+        
         db.collection("result").document(uid).collection("userData")
-            .order(by: "id") // Ordena pelo campo "id" em ordem crescente
+            .order(by: "id")
             .getDocuments(source: .default) { (querySnapshot, error) in
                 if let error = error {
                     print("Erro ao buscar dados: \(error.localizedDescription)")
@@ -45,7 +42,7 @@ class DetailsViewModel {
                         )
                         resultDataArray.append(resultData)
                     }
-                    completion(resultDataArray, nil) // Retorna os dados ordenados
+                    completion(resultDataArray, nil)
                 }
             }
     }

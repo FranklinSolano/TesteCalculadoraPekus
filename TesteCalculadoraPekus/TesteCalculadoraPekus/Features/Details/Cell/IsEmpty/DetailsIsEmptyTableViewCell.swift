@@ -9,6 +9,8 @@ import UIKit
 
 class DetailsIsEmptyTableViewCell: UITableViewCell {
     
+    //MARK: - Elements
+    
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.configLabel(text: "Ainda não há nenhum resultado", font: DesignerSystem.Fonts.fontBold , textColor: DesignerSystem.Colors.thirdColor)
@@ -24,6 +26,8 @@ class DetailsIsEmptyTableViewCell: UITableViewCell {
         return imageView
     }()
 
+    //MARK: - Other Methods
+    
     static let identifier: String = "DetailsIsEmptyTableViewCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -34,6 +38,8 @@ class DetailsIsEmptyTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    //MARK: - Other Methods
     
     private func configSetup() {
         configColor()

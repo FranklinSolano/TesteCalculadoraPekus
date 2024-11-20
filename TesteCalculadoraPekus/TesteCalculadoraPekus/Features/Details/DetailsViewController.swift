@@ -11,7 +11,8 @@ class DetailsViewController: UIViewController {
     
     var screen: DetailsScreen?
     var viewModel: DetailsViewModel = DetailsViewModel()
-    
+
+    //MARK: - Inicializador
     override func loadView() {
         screen = DetailsScreen()
         view = screen
@@ -25,6 +26,8 @@ class DetailsViewController: UIViewController {
         pullFirebase()
     }
     
+    //MARK: - Other Methods
+    
     func pullFirebase(){
         viewModel.fetchUserData { (resultData, error) in
                 if let error = error {
@@ -37,6 +40,8 @@ class DetailsViewController: UIViewController {
     }
     
 }
+
+//MARK: - Extension UITableViewDelegate, UITableViewDataSource
 
 extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
