@@ -11,7 +11,7 @@ class DetailsScreen: UIView {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.configLabel(text: "Dados de todas as operações", font: DesignerSystem.Fonts.fontBold, textColor: DesignerSystem.Colors.thirdColor)
+        label.configLabel(text: DetailsScreenEnum.title.rawValue, font: DesignerSystem.Fonts.fontBold, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     

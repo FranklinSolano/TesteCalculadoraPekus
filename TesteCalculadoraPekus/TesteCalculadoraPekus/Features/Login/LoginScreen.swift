@@ -23,13 +23,13 @@ class LoginScreen: UIView {
     lazy var imageLogo: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(named: "logo")
+        image.image = UIImage(named: LoginScreenEnum.imageLogo.rawValue)
         image.contentMode = .scaleAspectFill
         return image
     }()
     
     lazy var loginButton: UIButton = {
-        let button = ButtonCustomGeneric(title: "Login", isEnabled: true, titleColor: .white)
+        let button = ButtonCustomGeneric(title: LoginScreenEnum.login.rawValue, isEnabled: true, titleColor: .white)
         button.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
         return button
     }()

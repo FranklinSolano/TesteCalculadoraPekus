@@ -13,14 +13,14 @@ class DetailsIsEmptyTableViewCell: UITableViewCell {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.configLabel(text: "Ainda não há nenhum resultado", font: DesignerSystem.Fonts.fontBold , textColor: DesignerSystem.Colors.thirdColor)
+        label.configLabel(text: DetailsIsEmptyTableViewCellEnum.title.rawValue, font: DesignerSystem.Fonts.fontBold , textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var imageLogo: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = UIImage(systemName: "hand.raised.app")
+        imageView.image = UIImage(systemName: DetailsIsEmptyTableViewCellEnum.image.rawValue)
         imageView.tintColor = DesignerSystem.Colors.primaryColor
         imageView.contentMode = .scaleAspectFit
         return imageView
@@ -28,7 +28,7 @@ class DetailsIsEmptyTableViewCell: UITableViewCell {
 
     //MARK: - Other Methods
     
-    static let identifier: String = "DetailsIsEmptyTableViewCell"
+    static let identifier: String = DetailsIsEmptyTableViewCellEnum.identifier.rawValue
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

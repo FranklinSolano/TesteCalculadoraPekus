@@ -61,7 +61,7 @@ class DetailsScreenTableViewCell: UITableViewCell {
     
     //MARK: - Inicializador
 
-    static let identifier: String = "DetailsScreenTableViewCell"
+    static let identifier: String = DetailsScreenTableViewCellEnum.identifier.rawValue
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -86,12 +86,12 @@ class DetailsScreenTableViewCell: UITableViewCell {
     }
 
     func configSetupCellWithFixedData() {
-        idLabel.text = "ID"
-        valueOneLabel.text = "Valor 1"
-        valueTwoLabel.text = "Valor 2"
-        operationLabel.text = "Operação"
-        resultLabel.text = "Resultado"
-        dataLabel.text = "Data e Hora"
+        idLabel.text = DetailsScreenTableViewCellEnum.id.rawValue
+        valueOneLabel.text = DetailsScreenTableViewCellEnum.valueOne.rawValue
+        valueTwoLabel.text = DetailsScreenTableViewCellEnum.valueTwo.rawValue
+        operationLabel.text = DetailsScreenTableViewCellEnum.operationType.rawValue
+        resultLabel.text = DetailsScreenTableViewCellEnum.result.rawValue
+        dataLabel.text = DetailsScreenTableViewCellEnum.date.rawValue
         stackView.layer.borderColor = DesignerSystem.Colors.secondaryColor.cgColor
         stackView.spacing = 5
     }

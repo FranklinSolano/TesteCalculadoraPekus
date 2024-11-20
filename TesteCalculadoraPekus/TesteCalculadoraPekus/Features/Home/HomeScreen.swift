@@ -33,64 +33,64 @@ class HomeScreen: UIView {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.configLabel(text: "Bem-vindo a Calculadora PEKUS", font: DesignerSystem.Fonts.fontBold, textColor: DesignerSystem.Colors.thirdColor)
+        label.configLabel(text: HomeScreenEnum.welcome.rawValue, font: DesignerSystem.Fonts.fontBold, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var subtileLabel: UILabel = {
         let label = UILabel()
-        label.configLabel(text: "Informe os valores e a operação desejada abaixo", font: DesignerSystem.Fonts.fontSemiBold, textColor: DesignerSystem.Colors.thirdColor)
+        label.configLabel(text: HomeScreenEnum.subtitle.rawValue, font: DesignerSystem.Fonts.fontSemiBold, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var valueOneLabel: UILabel = {
         let label = UILabel()
-        label.configLabel(text: "Primeiro valor", font: DesignerSystem.Fonts.fontDefault, textColor: DesignerSystem.Colors.thirdColor)
+        label.configLabel(text: HomeScreenEnum.valueOne.rawValue, font: DesignerSystem.Fonts.fontDefault, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var valueOneTextField: UITextField = {
-        let textField = CustomTextField(placeholder: "Digite aqui o primeiro valor")
+        let textField = CustomTextField(placeholder: HomeScreenEnum.placeholderValueOne.rawValue)
         return textField
     }()
     
     lazy var plusButton: UIButton = {
-        let button = ButtonCustomOperators(image: "plus")
+        let button = ButtonCustomOperators(image: HomeScreenEnum.plus.rawValue)
         button.addTarget(self, action: #selector(tappedPlusButton), for: .touchUpInside)
         return button
     }()
     
     lazy var minusButton: UIButton = {
-        let button = ButtonCustomOperators(image: "minus")
+        let button = ButtonCustomOperators(image: HomeScreenEnum.minus.rawValue)
         button.addTarget(self, action: #selector(tappedMinusButton), for: .touchUpInside)
         return button
     }()
     
     lazy var multiplicationButton: UIButton = {
-        let button = ButtonCustomOperators(image: "multiply")
+        let button = ButtonCustomOperators(image: HomeScreenEnum.multiply.rawValue)
         button.addTarget(self, action: #selector(tappedMultiplicationButton), for: .touchUpInside)
         return button
     }()
     
     lazy var divisionButton: UIButton = {
-        let button = ButtonCustomOperators(image: "divide")
+        let button = ButtonCustomOperators(image: HomeScreenEnum.division.rawValue)
         button.addTarget(self, action: #selector(tappedDivisionButton), for: .touchUpInside)
         return button
     }()
     
     lazy var valueTwoLabel: UILabel = {
         let label = UILabel()
-        label.configLabel(text: "Segundo valor", font: DesignerSystem.Fonts.fontDefault, textColor: DesignerSystem.Colors.thirdColor)
+        label.configLabel(text: HomeScreenEnum.valueTwo.rawValue, font: DesignerSystem.Fonts.fontDefault, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var valueTwoTextField: UITextField = {
-        let textField = CustomTextField(placeholder: "Digite aqui o segundo valor")
+        let textField = CustomTextField(placeholder: HomeScreenEnum.placeholderValueTwo.rawValue)
         return textField
     }()
     
     lazy var calculeteButton: UIButton = {
-        let button = ButtonCustomGeneric(title: "Calcular", isEnabled: false, titleColor: .lightGray)
+        let button = ButtonCustomGeneric(title: HomeScreenEnum.calculate.rawValue, isEnabled: false, titleColor: .lightGray)
         button.addTarget(self, action: #selector(tappedCalculateButton), for: .touchUpInside)
         return button
     }()
