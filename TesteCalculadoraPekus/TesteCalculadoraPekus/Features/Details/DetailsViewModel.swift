@@ -12,7 +12,6 @@ import FirebaseFirestore
 class DetailsViewModel {
     var dataPopular: [DetailsModel] = []
     
-    
     func fetchUserData(completion: @escaping ([DetailsModel]?, Error?) -> Void) {
         // Verifica se o usuário está logado
         guard let user = Auth.auth().currentUser else {
@@ -25,30 +24,29 @@ class DetailsViewModel {
         let db = Firestore.firestore()
 
         // Faz a consulta na coleção userData dentro de result/{uid}
-        db.collection("result").document(uid).collection("userData").getDocuments(source: .default) { (querySnapshot, error) in
-            if let error = error {
-                print("Erro ao buscar dados: \(error.localizedDescription)")
-                completion(nil, error)
-            } else {
-                var resultDataArray: [DetailsModel] = []
-                for document in querySnapshot?.documents ?? [] {
-                    let data = document.data()
-                    let resultData = DetailsModel(
-                        id: data["id"] as? Int ?? 0,
-                        valueOne: data["value1"] as? String ?? "",
-                        valueTwo: data["value2"] as? String ?? "",
-                        operation: data["operador"] as? String ?? "",
-                        result: data["result"] as? Double ?? 0.0,
-                        data: data["dataHora"] as? String ?? ""
-                    )
-                    resultDataArray.append(resultData)
+        // Ordenando os dados pelo campo "id" de forma crescente
+        db.collection("result").document(uid).collection("userData")
+            .order(by: "id") // Ordena pelo campo "id" em ordem crescente
+            .getDocuments(source: .default) { (querySnapshot, error) in
+                if let error = error {
+                    print("Erro ao buscar dados: \(error.localizedDescription)")
+                    completion(nil, error)
+                } else {
+                    var resultDataArray: [DetailsModel] = []
+                    for document in querySnapshot?.documents ?? [] {
+                        let data = document.data()
+                        let resultData = DetailsModel(
+                            id: data["id"] as? Int ?? 0,
+                            valueOne: data["value1"] as? String ?? "",
+                            valueTwo: data["value2"] as? String ?? "",
+                            operation: data["operador"] as? String ?? "",
+                            result: data["result"] as? Double ?? 0.0,
+                            data: data["dataHora"] as? String ?? ""
+                        )
+                        resultDataArray.append(resultData)
+                    }
+                    completion(resultDataArray, nil) // Retorna os dados ordenados
                 }
-                completion(resultDataArray, nil) // Retorna os dados buscados
             }
-        }
     }
-
-
-    
-    
 }

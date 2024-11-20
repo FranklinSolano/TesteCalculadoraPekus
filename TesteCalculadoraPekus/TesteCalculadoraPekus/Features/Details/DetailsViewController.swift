@@ -22,10 +22,10 @@ class DetailsViewController: UIViewController {
         screen?.configTableView(delegate: self, dataSource: self)
     }
     override func viewWillAppear(_ animated: Bool) {
-        teste()
+        pullFirebase()
     }
     
-    func teste(){
+    func pullFirebase(){
         viewModel.fetchUserData { (resultData, error) in
                 if let error = error {
                     print("Erro ao buscar dados: \(error.localizedDescription)")
@@ -51,6 +51,7 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let cell: DetailsScreenTableViewCell? = tableView.dequeueReusableCell(withIdentifier: DetailsScreenTableViewCell.identifier, for: indexPath) as? DetailsScreenTableViewCell
+            cell?.configSetupCellWithFixedData()
             return cell ?? UITableViewCell()
         } else {
             let cell: DetailsScreenTableViewCell? = tableView.dequeueReusableCell(withIdentifier: DetailsScreenTableViewCell.identifier, for: indexPath) as? DetailsScreenTableViewCell

@@ -57,8 +57,8 @@ class DetailsScreen: UIView {
     private func configConstraints(){
         NSLayoutConstraint.activate([
             
-            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 20),
+            titleLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor,constant: 40),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 25),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -25),
             
             detailsTableView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,constant: 50),

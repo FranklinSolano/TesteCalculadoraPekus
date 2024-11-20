@@ -12,46 +12,45 @@ class DetailsScreenTableViewCell: UITableViewCell {
     
     lazy var idLabel: UILabel = {
         let label = UILabel()
-        label.configLabel(text: "Id", font: DesignerSystem.Fonts.fontSmall, textColor: DesignerSystem.Colors.thirdColor)
+        label.configLabel(text: "", font: DesignerSystem.Fonts.fontSmall, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var valueOneLabel: UILabel = {
         let label = UILabel()
-        label.configLabel(text: "Valor 1", font: DesignerSystem.Fonts.fontSmall, textColor: DesignerSystem.Colors.thirdColor)
+        label.configLabel(text: "", font: DesignerSystem.Fonts.fontSmall, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var valueTwoLabel: UILabel = {
         let label = UILabel()
-        label.configLabel(text: "Valor 2", font: DesignerSystem.Fonts.fontSmall, textColor: DesignerSystem.Colors.thirdColor)
+        label.configLabel(text: "", font: DesignerSystem.Fonts.fontSmall, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var operationLabel: UILabel = {
         let label = UILabel()
-        label.configLabel(text: "Operador", font: DesignerSystem.Fonts.fontSmall, textColor: DesignerSystem.Colors.thirdColor)
+        label.configLabel(text: "", font: DesignerSystem.Fonts.fontSmall, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var resultLabel: UILabel = {
         let label = UILabel()
-        label.configLabel(text: "Resultado", font: DesignerSystem.Fonts.fontSmall, textColor: DesignerSystem.Colors.thirdColor)
+        label.configLabel(text: "", font: DesignerSystem.Fonts.fontSmall, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var dataLabel: UILabel = {
         let label = UILabel()
-        label.configLabel(text: "Data e Hora", font: DesignerSystem.Fonts.fontSmall, textColor: DesignerSystem.Colors.thirdColor)
+        label.configLabel(text: "", font: DesignerSystem.Fonts.fontSmall, textColor: DesignerSystem.Colors.thirdColor)
         return label
     }()
     
     lazy var stackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.axis = .horizontal // Define o eixo como horizontal
-        stackView.alignment = .fill   // Alinhamento das views dentro do StackView
-        stackView.distribution = .fillEqually // Distribui o espaço de maneira igual entre as labels
-        stackView.spacing = 5// Esp
+        stackView.axis = .horizontal 
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
         stackView.backgroundColor = DesignerSystem.Colors.secondaryColor
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.clipsToBounds = true
@@ -90,8 +89,18 @@ class DetailsScreenTableViewCell: UITableViewCell {
         return "\(value)"
     }
 
+    func configSetupCellWithFixedData() {
+        idLabel.text = "ID"
+        valueOneLabel.text = "Valor 1"
+        valueTwoLabel.text = "Valor 2"
+        operationLabel.text = "Operação"
+        resultLabel.text = "Resultado"
+        dataLabel.text = "Data e Hora"
+        stackView.layer.borderColor = DesignerSystem.Colors.primaryColor.cgColor
+        stackView.spacing = 5
+    }
     
-    func configSetupCell(data: DetailsModel){
+    func configSetupCellPopular(data: DetailsModel){
         idLabel.text = String(data.id ?? 0)
         valueOneLabel.text = data.valueOne
         valueTwoLabel.text = data.valueTwo
