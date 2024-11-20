@@ -22,6 +22,7 @@ class DetailsScreen: UIView {
         tableView.showsVerticalScrollIndicator = false
         tableView.backgroundColor = DesignerSystem.Colors.secondaryColor
         tableView.register(DetailsScreenTableViewCell.self, forCellReuseIdentifier: DetailsScreenTableViewCell.identifier)
+        tableView.register(DetailsIsEmptyTableViewCell.self, forCellReuseIdentifier: DetailsIsEmptyTableViewCell.identifier)
         return tableView
     }()
 

@@ -49,21 +49,28 @@ extension DetailsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        if viewModel.dataPopular.isEmpty {
+            let cell: DetailsIsEmptyTableViewCell? = tableView.dequeueReusableCell(withIdentifier: DetailsIsEmptyTableViewCell.identifier, for: indexPath) as? DetailsIsEmptyTableViewCell
+            return cell ?? UITableViewCell()
+        } else if indexPath.row == 0 {
             let cell: DetailsScreenTableViewCell? = tableView.dequeueReusableCell(withIdentifier: DetailsScreenTableViewCell.identifier, for: indexPath) as? DetailsScreenTableViewCell
             cell?.configSetupCellWithFixedData()
             return cell ?? UITableViewCell()
         } else {
             let cell: DetailsScreenTableViewCell? = tableView.dequeueReusableCell(withIdentifier: DetailsScreenTableViewCell.identifier, for: indexPath) as? DetailsScreenTableViewCell
             let dataIndex = indexPath.row - 1  // Subtrai 1 para ajustar o índice do array
-            cell?.configSetupCell(data: viewModel.dataPopular[dataIndex])
+            cell?.configSetupCellPopular(data: viewModel.dataPopular[dataIndex])
             return cell ?? UITableViewCell()
         }
         
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        if viewModel.dataPopular.isEmpty {
+            return 350
+        } else {
+            return 90
+        }
     }
     
 }
