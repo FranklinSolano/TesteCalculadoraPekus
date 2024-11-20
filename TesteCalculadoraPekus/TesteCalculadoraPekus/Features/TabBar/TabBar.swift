@@ -9,10 +9,13 @@ import UIKit
 
 class TabbarViewController: UITabBarController {
 
+    //MARK: - Inicializador
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTabbarController()
     }
+    
+    //MARK: - Other Methods
 
     private func setupTabbarController(){
         
@@ -31,6 +34,6 @@ class TabbarViewController: UITabBarController {
         tabBarItem[0].image = UIImage(systemName: "house")
         
         tabBarItem[1].title = "Details"
-        tabBarItem[1].image = UIImage(systemName: "heart")
+        tabBarItem[1].image = UIImage(systemName: "equal.square")
     }
 }

@@ -31,7 +31,7 @@ class ButtonCustomOperators: UIButton {
     }
 }
 
-class ButtonCustomCalculate: UIButton{
+class ButtonCustomGeneric: UIButton{
     
     init(title: String, isEnabled: Bool, titleColor: UIColor) {
         super.init(frame: .zero)

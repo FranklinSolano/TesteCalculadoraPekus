@@ -12,6 +12,7 @@ class LoginViewController: UIViewController {
     var screen: LoginScreen?
     var viewModel: LoginViewModel = LoginViewModel()
     
+//MARK: - Inicializador
     override func loadView() {
         screen = LoginScreen()
         view = screen
@@ -26,6 +27,8 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         configNavegationBar(animated: animated)
     }
+    
+//MARK: - Other Methods
     
     private func configNavegationBar(animated: Bool){
         self.navigationController?.setNavigationBarHidden(true, animated: animated)   // Esconde a Navigation Bar
@@ -43,12 +46,15 @@ class LoginViewController: UIViewController {
 
 }
 
+//MARK: - Extension LoginScreenProtocol
 
 extension LoginViewController: LoginScreenProtocol {
     func tappedLoginButton() {
         viewModel.loginFirebase(email: "franklin@gmail.com", password: "12345678")
     }
 }
+
+//MARK: - Extension LoginViewModelProtocol
 
 extension LoginViewController: LoginViewModelProtocol{
     func sucess() {

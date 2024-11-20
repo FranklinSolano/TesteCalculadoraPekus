@@ -8,8 +8,8 @@
 import UIKit
 
 protocol HomeScreenProtocol: AnyObject {
-    func actionAdditionButton()
-    func actionSubtractionButton()
+    func actionPlusButton()
+    func actionMinusButton()
     func actionMultiplicationButton()
     func actionDivisionButton()
     func actionCalculateButton()
@@ -27,8 +27,8 @@ class HomeScreen: UIView {
     func delegate(delegate: HomeScreenProtocol){
         self.delegate = delegate
     }
-    
     var selectionButton: Bool = false
+    
     //MARK: - Elements
     
     lazy var titleLabel: UILabel = {
@@ -54,15 +54,15 @@ class HomeScreen: UIView {
         return textField
     }()
     
-    lazy var additionButton: UIButton = {
+    lazy var plusButton: UIButton = {
         let button = ButtonCustomOperators(image: "plus")
-        button.addTarget(self, action: #selector(tappedAdditionButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tappedPlusButton), for: .touchUpInside)
         return button
     }()
     
-    lazy var subtractionButton: UIButton = {
+    lazy var minusButton: UIButton = {
         let button = ButtonCustomOperators(image: "minus")
-        button.addTarget(self, action: #selector(tappedSubtractionButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(tappedMinusButton), for: .touchUpInside)
         return button
     }()
     
@@ -90,8 +90,8 @@ class HomeScreen: UIView {
     }()
     
     lazy var calculeteButton: UIButton = {
-        let button = ButtonCustomCalculate(title: "Calcular", isEnabled: false, titleColor: .lightGray)
-        button.addTarget(self, action: #selector(tappedCalculateutton), for: .touchUpInside)
+        let button = ButtonCustomGeneric(title: "Calcular", isEnabled: false, titleColor: .lightGray)
+        button.addTarget(self, action: #selector(tappedCalculateButton), for: .touchUpInside)
         return button
     }()
     
@@ -115,7 +115,7 @@ class HomeScreen: UIView {
     
     private func configSetup() {
         configColor()
-        configLayout()
+        configElements()
         configConstraints()
         setupTapGesture()
     }
@@ -124,18 +124,13 @@ class HomeScreen: UIView {
         backgroundColor = DesignerSystem.Colors.secondaryColor
     }
     
-    private func setupTapGesture() {
-          let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-          self.addGestureRecognizer(tapGesture)
-      }
-    
-    private func configLayout() {
+    private func configElements() {
         addSubview(titleLabel)
         addSubview(subtileLabel)
         addSubview(valueOneLabel)
         addSubview(valueOneTextField)
-        addSubview(additionButton)
-        addSubview(subtractionButton)
+        addSubview(plusButton)
+        addSubview(minusButton)
         addSubview(multiplicationButton)
         addSubview(divisionButton)
         addSubview(valueTwoLabel)
@@ -163,27 +158,27 @@ class HomeScreen: UIView {
             valueOneTextField.heightAnchor.constraint(equalToConstant: 50),
             
             
-            subtractionButton.topAnchor.constraint(equalTo: valueOneTextField.bottomAnchor,constant: 40),
-            subtractionButton.centerXAnchor.constraint(equalTo: centerXAnchor,constant: -40),
-            subtractionButton.heightAnchor.constraint(equalToConstant: 40),
-            subtractionButton.widthAnchor.constraint(equalToConstant: 40),
+            minusButton.topAnchor.constraint(equalTo: valueOneTextField.bottomAnchor,constant: 40),
+            minusButton.centerXAnchor.constraint(equalTo: centerXAnchor,constant: -40),
+            minusButton.heightAnchor.constraint(equalToConstant: 40),
+            minusButton.widthAnchor.constraint(equalToConstant: 40),
             
-            multiplicationButton.centerYAnchor.constraint(equalTo: subtractionButton.centerYAnchor),
+            multiplicationButton.centerYAnchor.constraint(equalTo: minusButton.centerYAnchor),
             multiplicationButton.centerXAnchor.constraint(equalTo: centerXAnchor,constant: 40),
             multiplicationButton.heightAnchor.constraint(equalToConstant: 40),
             multiplicationButton.widthAnchor.constraint(equalToConstant: 40),
             
-            additionButton.centerYAnchor.constraint(equalTo: subtractionButton.centerYAnchor),
-            additionButton.trailingAnchor.constraint(equalTo: subtractionButton.leadingAnchor, constant: -40),
-            additionButton.heightAnchor.constraint(equalToConstant: 40),
-            additionButton.widthAnchor.constraint(equalToConstant: 40),
+            plusButton.centerYAnchor.constraint(equalTo: minusButton.centerYAnchor),
+            plusButton.trailingAnchor.constraint(equalTo: minusButton.leadingAnchor, constant: -40),
+            plusButton.heightAnchor.constraint(equalToConstant: 40),
+            plusButton.widthAnchor.constraint(equalToConstant: 40),
             
-            divisionButton.centerYAnchor.constraint(equalTo: subtractionButton.centerYAnchor),
+            divisionButton.centerYAnchor.constraint(equalTo: minusButton.centerYAnchor),
             divisionButton.leadingAnchor.constraint(equalTo: multiplicationButton.trailingAnchor, constant: 40),
             divisionButton.heightAnchor.constraint(equalToConstant: 40),
             divisionButton.widthAnchor.constraint(equalToConstant: 40),
             
-            valueTwoLabel.topAnchor.constraint(equalTo: subtractionButton.bottomAnchor, constant: 40),
+            valueTwoLabel.topAnchor.constraint(equalTo: minusButton.bottomAnchor, constant: 40),
             valueTwoLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
             
             valueTwoTextField.topAnchor.constraint(equalTo: valueTwoLabel.bottomAnchor,constant: 10),
@@ -198,31 +193,36 @@ class HomeScreen: UIView {
         ])
     }
     
+    private func setupTapGesture() {
+          let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+          self.addGestureRecognizer(tapGesture)
+      }
+    
     func configSelectionButton() -> String{
-        if additionButton.layer.borderColor ==  UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor {
-            subtractionButton.layer.borderColor = UIColor.clear.cgColor
+        if plusButton.layer.borderColor ==  UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor {
+            minusButton.layer.borderColor = UIColor.clear.cgColor
             multiplicationButton.layer.borderColor = UIColor.clear.cgColor
             divisionButton.layer.borderColor = UIColor.clear.cgColor
             selectionButton = true
             delegate?.resultPlus()
             return "+"
-        } else if subtractionButton.layer.borderColor == UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor {
-            additionButton.layer.borderColor = UIColor.clear.cgColor
+        } else if minusButton.layer.borderColor == UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor {
+            plusButton.layer.borderColor = UIColor.clear.cgColor
             multiplicationButton.layer.borderColor = UIColor.clear.cgColor
             divisionButton.layer.borderColor = UIColor.clear.cgColor
             selectionButton = true
             delegate?.resultMinus()
             return "-"
         } else if multiplicationButton.layer.borderColor == UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor {
-            additionButton.layer.borderColor = UIColor.clear.cgColor
-            subtractionButton.layer.borderColor = UIColor.clear.cgColor
+            plusButton.layer.borderColor = UIColor.clear.cgColor
+            minusButton.layer.borderColor = UIColor.clear.cgColor
             divisionButton.layer.borderColor = UIColor.clear.cgColor
             selectionButton = true
             delegate?.resultMultiply()
             return "*"
         } else if divisionButton.layer.borderColor == UIColor(red: 39/255, green: 68/255, blue: 122/255, alpha: 1).cgColor {
-            additionButton.layer.borderColor = UIColor.clear.cgColor
-            subtractionButton.layer.borderColor = UIColor.clear.cgColor
+            plusButton.layer.borderColor = UIColor.clear.cgColor
+            minusButton.layer.borderColor = UIColor.clear.cgColor
             multiplicationButton.layer.borderColor = UIColor.clear.cgColor
             selectionButton = true
             delegate?.resultDivide()
@@ -232,7 +232,7 @@ class HomeScreen: UIView {
     }
     
     func configSelectionButton(button: UIButton) {
-        let buttuns = [additionButton, subtractionButton, multiplicationButton, divisionButton]
+        let buttuns = [plusButton, minusButton, multiplicationButton, divisionButton]
             buttuns.forEach { $0.layer.borderColor = UIColor.clear.cgColor}
             button.layer.borderColor = DesignerSystem.Colors.primaryColor.cgColor
             selectionButton = true
@@ -255,8 +255,8 @@ class HomeScreen: UIView {
     func sucessData(){
         valueOneTextField.text = ""
         valueTwoTextField.text = ""
-        additionButton.layer.borderColor = UIColor.clear.cgColor
-        subtractionButton.layer.borderColor = UIColor.clear.cgColor
+        plusButton.layer.borderColor = UIColor.clear.cgColor
+        minusButton.layer.borderColor = UIColor.clear.cgColor
         multiplicationButton.layer.borderColor = UIColor.clear.cgColor
         divisionButton.layer.borderColor = UIColor.clear.cgColor
         selectionButton = false
@@ -265,12 +265,12 @@ class HomeScreen: UIView {
     
     //MARK: - Actions-Buttons
     
-    @objc func tappedAdditionButton() {
-        delegate?.actionAdditionButton()
+    @objc func tappedPlusButton() {
+        delegate?.actionPlusButton()
     }
     
-    @objc func tappedSubtractionButton() {
-        delegate?.actionSubtractionButton()
+    @objc func tappedMinusButton() {
+        delegate?.actionMinusButton()
     }
     
     @objc func tappedMultiplicationButton() {
@@ -281,7 +281,7 @@ class HomeScreen: UIView {
         delegate?.actionDivisionButton()
     }
     
-    @objc func tappedCalculateutton() {
+    @objc func tappedCalculateButton() {
         delegate?.actionCalculateButton()
     }
     

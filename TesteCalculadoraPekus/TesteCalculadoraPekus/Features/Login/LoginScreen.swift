@@ -18,6 +18,8 @@ class LoginScreen: UIView {
         self.delegate = delegate
     }
     
+//MARK: - Elements
+    
     lazy var imageLogo: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -27,10 +29,12 @@ class LoginScreen: UIView {
     }()
     
     lazy var loginButton: UIButton = {
-        let button = ButtonCustomCalculate(title: "Login", isEnabled: true, titleColor: .white)
+        let button = ButtonCustomGeneric(title: "Login", isEnabled: true, titleColor: .white)
         button.addTarget(self, action: #selector(tappedLoginButton), for: .touchUpInside)
         return button
     }()
+    
+//MARK: - Inicializador
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -41,18 +45,24 @@ class LoginScreen: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configSetup(){
+//MARK: - Other Methods
+    
+    private func configSetup(){
         configElements()
         configConstraints()
+        configColor()
+    }
+    
+    private func configColor(){
         backgroundColor = UIColor(red: 254/255, green: 254/255, blue: 254/255, alpha: 1)
     }
     
-    func configElements(){
+    private func configElements(){
         addSubview(imageLogo)
         addSubview(loginButton)
     }
     
-    func configConstraints(){
+    private func configConstraints(){
         NSLayoutConstraint.activate([
             
             imageLogo.centerXAnchor.constraint(equalTo: centerXAnchor),
@@ -64,7 +74,6 @@ class LoginScreen: UIView {
             loginButton.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 25),
             loginButton.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -25),
             loginButton.heightAnchor.constraint(equalToConstant: 50)
-            
         ])
     }
     

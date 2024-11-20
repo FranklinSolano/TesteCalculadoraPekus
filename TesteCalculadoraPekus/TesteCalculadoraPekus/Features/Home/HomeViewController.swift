@@ -14,6 +14,8 @@ class HomeViewController: UIViewController {
     var viewModel: HomeViewModel = HomeViewModel()
     var resultOperation: Double = 0.0
     
+//MARK: - Inicializador
+    
     override func loadView() {
         screen = HomeScreen()
         view = screen
@@ -25,6 +27,7 @@ class HomeViewController: UIViewController {
         alert = Alert(controller: self)
         
     }
+//MARK: - Other Methods
     
     func configSetup(){
         configDelegates()
@@ -35,7 +38,8 @@ class HomeViewController: UIViewController {
         screen?.delegate(delegate: self)
     }
 }
-
+ 
+//MARK: - Extension UITextFieldDelegate
 extension HomeViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -46,6 +50,7 @@ extension HomeViewController: UITextFieldDelegate {
     }
 }
 
+//MARK: - Extension HomeScreenProtocol
 extension HomeViewController: HomeScreenProtocol {
     func resultPlus() {
         let valueOne = Double(screen?.valueOneTextField.text ?? "") ?? 0.0
@@ -71,25 +76,22 @@ extension HomeViewController: HomeScreenProtocol {
             resultOperation = viewModel.resultDivide(valueOne: valueOne, valueTwo: valueTwo)
     }
     
-    
     func alertError() {
         alert?.getAlert(titulo: "Atenção", mensagem: "Selecione um operador para continuar")
     }
     
     func alertSuccess() {
         alert?.getAlert(titulo: "Sucesso", mensagem: "Dados Armezenados com sucesso")
-       
-        viewModel.saveDataWithIncrement(value1: screen?.valueOneTextField.text ?? "", value2: screen?.valueTwoTextField.text ?? "",operador: screen?.configSelectionButton() ?? "" , result: resultOperation)
+        viewModel.saveDataWithIncrement(value1: screen?.valueOneTextField.text ?? "", value2: screen?.valueTwoTextField.text ?? "",operation: screen?.configSelectionButton() ?? "" , result: resultOperation)
         screen?.sucessData()
-                
     }
     
-    func actionAdditionButton() {
-        screen?.configSelectionButton(button: screen?.additionButton ?? UIButton())
+    func actionPlusButton() {
+        screen?.configSelectionButton(button: screen?.plusButton ?? UIButton())
     }
     
-    func actionSubtractionButton() {
-        screen?.configSelectionButton(button: screen?.subtractionButton ?? UIButton())
+    func actionMinusButton() {
+        screen?.configSelectionButton(button: screen?.minusButton ?? UIButton())
     }
     
     func actionMultiplicationButton() {
@@ -103,6 +105,4 @@ extension HomeViewController: HomeScreenProtocol {
     func actionCalculateButton() {
         screen?.configButtonOperationSelection()
     }
-    
-    
 }

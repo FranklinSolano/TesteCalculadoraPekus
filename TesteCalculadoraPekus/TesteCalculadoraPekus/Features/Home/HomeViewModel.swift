@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 class HomeViewModel {
     
-    func saveDataWithIncrement(value1: String, value2: String, operador: String, result: Double) {
+    func saveDataWithIncrement(value1: String, value2: String, operation: String, result: Double) {
         // Verifica se o usuário está logado
         guard let user = Auth.auth().currentUser else {
             print("Usuário não está logado")
@@ -57,7 +57,7 @@ class HomeViewModel {
                 "id": nextId,  // O próximo `id` sequencial
                 "value1": value1,
                 "value2": value2,
-                "operador": operador,
+                "operador": operation,
                 "result": result,
                 "dataHora": formattedDate, // Data e hora no formato desejado
                 "userID": uid // Associando o documento ao usuário logado
@@ -76,8 +76,6 @@ class HomeViewModel {
             }
         }
     }
-
-
 
     func resultPlus(valueOne: Double, valueTwo: Double) -> Double{
         let result = valueOne + valueTwo
@@ -98,6 +96,4 @@ class HomeViewModel {
         let result = valueOne / valueTwo
         return result
     }
-    
-    
 }
