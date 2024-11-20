@@ -16,6 +16,7 @@ public struct DesignerSystem {
     }
     
     public struct Fonts {
+        static let fontSmall = UIFont.systemFont(ofSize: 12,weight: .medium)
          static let fontDefault = UIFont.systemFont(ofSize: 16,weight: .regular)
         static let fontBold = UIFont.systemFont(ofSize: 25, weight: .bold)
         static let fontSemiBold = UIFont.systemFont(ofSize: 18, weight: .semibold)
