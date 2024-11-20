@@ -9,7 +9,6 @@ import UIKit
 
 class CustomTextField: UITextField {
 
-    // Inicializador para o text field
      init(placeholder: String) {
         super.init(frame: .zero)
         setupTextField(placeholder: placeholder)
@@ -19,7 +18,6 @@ class CustomTextField: UITextField {
         super.init(coder: coder)
     }
 
-    // Configuração do text field
     private func setupTextField(placeholder: String) {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.placeholder = placeholder
